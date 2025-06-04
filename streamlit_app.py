@@ -6,12 +6,13 @@ import numpy as np
 import requests
 import json 
 
-# Set page configuration
+
 st.set_page_config(page_title="SF Airbnb Dashboard", layout="wide")
 st.title("San Francisco Airbnb Listings Dashboard")
 
-# Load and preprocess the data
-dataframe = pd.read_csv("listings.csv")
+# df = pd.read_csv('listings.csv')
+
+dataframe = pd.read_csv('listings.csv')
 dataframe['price'] = dataframe['price'].replace('[\$,]', '', regex=True).astype(float)
 dataframe['estimated_revenue_l365d'] = pd.to_numeric(dataframe['estimated_revenue_l365d'], errors='coerce')
 dataframe = dataframe.dropna(subset=['room_type', 'neighbourhood_cleansed', 'price', 'estimated_revenue_l365d'])
